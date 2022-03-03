@@ -15,11 +15,20 @@ const pool = mysql.createPool({
 
 let db = {};
  
-// db.getAllBooks = () =>{
-db.getAllBooks = () =>{
+
+db.getAllBooks = (offset, limit) =>{
     return new Promise((resolve, reject)=>{
-        const limit = 2
-            pool.query('SELECT * FROM books ORDER BY ID LIMIT ' + limit ,(error, books)=>{
+            pool.query('SELECT * FROM books ORDER BY ID LIMIT ?, ?', [+offset, +limit] ,(error, books)=>{
+            if(error){
+                return reject(error);
+            }
+            return resolve(books);
+        });
+    });
+};
+db.getTotalBooks = () =>{
+    return new Promise((resolve, reject)=>{   
+            pool.query('SELECT COUNT(*) AS total FROM books' ,(error, books)=>{
             if(error){
                 return reject(error);
             }

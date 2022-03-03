@@ -16,7 +16,8 @@ router.use(bodyParser.urlencoded({ extended: false }))
 
 
 
-router.get('/', getBooks);
+// router.get('/', getBooks);
+router.get('/:offset/:limit', getBooks);
 
 router.param('bookId', pBooks);
 

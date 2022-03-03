@@ -4,9 +4,15 @@ import db from '../datastore/db.js';
 
 export const getBooks = async (req, res, next) => {
   try{
+    let offset = req.params.offset;
+    let limit = req.params.limit;
+
      console.log('get request');
-     const books = await db.getAllBooks();
-     res.status(200).json({books: books});
+    //  const books = await db.getAllBooks();
+     const books = await db.getAllBooks(offset, limit);
+     const totalbooks = await db.getTotalBooks();
+    //  res.status(200).json({books: books});
+     res.status(200).json({totalbooks: totalbooks, books: books});
   }catch(e) {
      console.log(e);
      res.sendStatus(500);
