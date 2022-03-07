@@ -11,13 +11,11 @@ import { verifyToken } from '../authentication/user.js';
 
 //initialise body-parser middleware 
 router.use(bodyParser.json());
-// parse application/x-www-form-urlencoded
 router.use(bodyParser.urlencoded({ extended: false }))
 
 router.use(cookieParser());
 
 
-// router.get('/', getBooks);
 router.get('/:offset/:limit', getBooks);
 
 router.param('bookId', pBooks);

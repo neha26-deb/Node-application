@@ -53,7 +53,6 @@ export const createBooks = async (req, res, next) => {
    }
    const book =  await db.insertBook(BookName, AuthorName, bookPublisher, bookPublishedYear).then(insertId=>{return db.getOneBook(insertId);});
    res.send('The book ' +BookName+ ' with id:' +bookId+  ' has been added by '+ req.session.user.role+ " "+req.session.user.name+ " at "+value); 
-  //  res.json({book: book})
   }catch(e) {
     console.log(e);
     res.sendStatus(400);

@@ -56,10 +56,8 @@ export const loginUser = async (req, res, next) => {
             }
             if (bResult) {
                 const token = jwt.sign({user:{id:result[0].id, role:result[0].role, name:result[0].name}},'the-super-strong-secrect',{ expiresIn: '1h' });
-                res.cookie('token', token); //we add secure: true, when using https
-                // res.cookie('token', jsontoken, { httpOnly: true, secure: true, SameSite: 'strict' , expires: new Date(Number(new Date()) + 30*60*1000) });
+                res.cookie('token', token); 
                 const resId = result[0].id;
-                // const updateLogin = db.updateLogin(resId);
                 return res.status(200).send({
                   msg: 'Logged in!',
                   token,  
