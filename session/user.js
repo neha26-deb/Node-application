@@ -2,8 +2,6 @@ import mysql from 'mysql2/promise';
 import MySQLStore from 'express-mysql-session';
 
 
-
-
 var options ={
     host: 'localhost',
     port: 3306,

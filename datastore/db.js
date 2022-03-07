@@ -109,9 +109,9 @@ db.emailcheck = (email) =>{
     });
 };
 
-db.insertUser = (name, email, password) =>{
+db.insertUser = (name, role, email, password) =>{
     return new Promise((resolve, reject)=>{
-        pool.query('INSERT INTO user (name, email, password) VALUES (?, ?, ?)', [name, email, password], (error, result)=>{
+        pool.query('INSERT INTO user (name, role, email, password) VALUES (?, ?, ?, ?)', [name, role, email, password], (error, result)=>{
             if(error){
                 return reject(error);
             }
@@ -121,15 +121,5 @@ db.insertUser = (name, email, password) =>{
     });
 }; 
 
-// db.updateLogin = (resId) =>{
-//     return new Promise((resolve, reject)=>{
-//         pool.query(`UPDATE user SET last_login = now() WHERE id = '[resId]'`, (error)=>{
-//             if(error){
-//                 return reject(error);
-//             }
-//             return resolve(user);
-//         });
-//     });
-// };
 export default db;
 
