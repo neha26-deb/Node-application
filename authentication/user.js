@@ -121,7 +121,7 @@ export const verifyToken  = async (req, res, next) => {
 export const logout = (req,res) => {
   req.session.destroy(function(err){
       if(!err){
-          res.send("Log Out!")
+          res.send("You are logged out!")
       }
   })
 };
